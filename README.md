@@ -29,6 +29,7 @@ Users can browse the menu, add products to the cart, place orders, and track the
 - User registration and login
 - JWT-based authentication
 - Persistent session handling
+- Logout flow that clears local authentication data
 - Role-based access control
 
 ### 🍔 Customer Experience
