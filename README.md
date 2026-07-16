@@ -170,7 +170,7 @@ This project was created to practice and demonstrate:
 
 ## 👨‍💻 Author
 
-Built by **Giorgio Cangemi** as part of the [Start2Impact](https://www.start2impact.it/) Full Stack Developer course, within the AI Agents module.
+Built by **Giorgio Cangemi** as part of the [Start2Impact](https://www.start2impact.it/) Full Stack Developer course.
 
 ---
 
