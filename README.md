@@ -20,8 +20,6 @@ Add screenshots of the app here:
 ![Homepage](public/MMG_ScreenShot.png)
 ![Menu and cart](public/MMG_ScreenShot2.png)
 
-> Replace the placeholder paths above with your real image files before publishing the project.
-
 ---
 
 ## ✨ Overview
