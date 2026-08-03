@@ -13,6 +13,15 @@
 
 A modern burger ordering platform built with **React**, **Express.js**, and **MongoDB**, featuring authentication, cart management, order tracking, kitchen workflow, and admin controls.
 
+## 📸 Screenshots
+
+Add screenshots of the app here:
+
+![Homepage](public/MMG_ScreenShot.png)
+![Menu and cart](public/MMG_ScreenShot.png)
+
+> Replace the placeholder paths above with your real image files before publishing the project.
+
 ---
 
 ## ✨ Overview
@@ -128,31 +137,41 @@ MMG Burger/
 npm install
 ```
 
-### 2. Run the frontend development server
+### 2. Configure environment variables
 
-```bash
-npm run dev
+Create a `.env` file in the project root with the following variables:
+
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
+JWT_SECRET=your_super_secret_key
+PORT=3001
 ```
 
-### 3. Start the API server
+> The application expects a MongoDB Atlas or MongoDB-compatible connection string. If the database is unavailable, the app falls back to a local in-memory mode for basic testing.
+
+### 3. Run the backend API
 
 ```bash
 npm run api
 ```
 
+### 4. Run the frontend development server
+
+```bash
+npm run dev
+```
+
+### 5. Run tests
+
+```bash
+npm test
+```
+
 ---
 
-## 🔐 Demo Credentials
+## 🌐 Demo
 
-### Admin
-
-- **Email:** [admin@mmgburger.test](mailto:admin@mmgburger.test)
-- **Password:** `admin123`
-
-### Customer
-
-- **Email:** [cliente@mmgburger.test](mailto:cliente@mmgburger.test)
-- **Password:** `cliente123`
+Live demo: https://mmg-burger.vercel.app/
 
 ---
 
