@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -16,84 +16,101 @@ import Dashboard from "./components/Dashboard.jsx";
 import AdminDashboard from "./components/AdminDashboard.jsx";
 import UserOrders from "./components/UserOrders.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import useScrollDirection from "./hooks/useScrollDirection.jsx";
 
 // NAVBAR IN PURO BOOTSTRAP
 function NavbarBootstrap() {
   const location = useLocation();
   const { user, logout, cart } = useContext(AppContext);
+  const isVisible = useScrollDirection();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Calcoliamo il numero totale di panini nel carrello
   const totalItems = cart
     ? cart.reduce((sum, item) => sum + item.quantity, 0)
     : 0;
 
-  // Ruolo utente
   const userRole = user?.role;
   const isBuyer = userRole !== "admin" && userRole !== "staff";
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3 rounded-3 mb-4">
+    <nav
+      className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3 rounded-3 mb-4"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1030,
+        transform:
+          isVisible || isMenuOpen ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.3s ease-in-out",
+      }}
+    >
       <div className="container-fluid">
-        {/* LOGO / NOME SITO */}
-        <Link className="navbar-brand fw-bold fs-4 text-warning" to="/">
+        <Link
+          className="navbar-brand fw-bold fs-4 text-warning"
+          to="/"
+          onClick={closeMenu}
+        >
           MMG Burger 🍔
         </Link>
 
-        {/* Pulsante Hamburger per dispositivi Mobile */}
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* LINK DI NAVIGAZIONE */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
                 className={`nav-link fw-semibold ${location.pathname === "/" ? "active text-warning" : ""}`}
                 to="/"
+                onClick={closeMenu}
               >
                 Menu
               </Link>
             </li>
 
-            {/* Mostra "I Miei Ordini" solo se l'utente è un cliente loggato */}
             {userRole === "user" && (
               <li className="nav-item">
                 <Link
                   className={`nav-link fw-semibold ${location.pathname === "/i-miei-ordini" ? "active text-warning" : ""}`}
                   to="/i-miei-ordini"
+                  onClick={closeMenu}
                 >
                   I Miei Ordini
                 </Link>
               </li>
             )}
 
-            {/* Mostra "Pannello Cucina" SOLO se l'utente è staff */}
             {userRole === "staff" && (
               <li className="nav-item">
                 <Link
                   className={`nav-link fw-semibold text-warning ${location.pathname === "/dashboard" ? "active border-bottom border-warning" : ""}`}
                   to="/dashboard"
+                  onClick={closeMenu}
                 >
                   Pannello Cucina 👨‍🍳
                 </Link>
               </li>
             )}
 
-            {/* Mostra "Pannello Amministrazione" SOLO se l'utente è un admin */}
             {userRole === "admin" && (
               <li className="nav-item">
                 <Link
                   className={`nav-link fw-semibold text-danger ${location.pathname === "/admin" ? "active border-bottom border-danger" : ""}`}
                   to="/admin"
+                  onClick={closeMenu}
                 >
                   Amministrazione 👑
                 </Link>
@@ -101,18 +118,15 @@ function NavbarBootstrap() {
             )}
           </ul>
 
-          {/* SEZIONE DESTRA: CARRELLO + LOGIN / LOGOUT */}
           <div className="d-flex align-items-center gap-2 flex-wrap">
-            {/* CARRELLO CON BADGE DI FIANCO */}
             {isBuyer && (
               <Link
                 to="/cart"
                 className="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2 rounded-pill px-3"
                 title="Vai al carrello"
+                onClick={closeMenu}
               >
                 <span>🛒 Carrello</span>
-
-                {/* Se ci sono elementi, creiamo un badge Bootstrap rosso visibilissimo */}
                 {totalItems > 0 && (
                   <span className="badge bg-danger rounded-pill fw-bold">
                     {totalItems}
@@ -135,7 +149,10 @@ function NavbarBootstrap() {
                 </span>
                 <button
                   className="btn btn-outline-danger btn-sm fw-bold px-3"
-                  onClick={logout}
+                  onClick={() => {
+                    closeMenu();
+                    logout();
+                  }}
                 >
                   Logout 🚪
                 </button>
@@ -145,12 +162,14 @@ function NavbarBootstrap() {
                 <Link
                   className="btn btn-outline-success btn-sm fw-bold px-3"
                   to="/login"
+                  onClick={closeMenu}
                 >
                   Login
                 </Link>
                 <Link
                   className="btn btn-warning btn-sm fw-bold px-3"
                   to="/register"
+                  onClick={closeMenu}
                 >
                   Registrati
                 </Link>
