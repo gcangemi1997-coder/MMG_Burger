@@ -175,6 +175,7 @@ function App() {
             fontFamily: "sans-serif",
           }}
         >
+          <ScrollToTop />
           {/* Richiamiamo la barra di navigazione Bootstrap */}
           <NavbarBootstrap />
 
