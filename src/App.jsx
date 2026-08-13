@@ -15,6 +15,7 @@ import Cart from "./components/Cart.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import AdminDashboard from "./components/AdminDashboard.jsx";
 import UserOrders from "./components/UserOrders.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 // NAVBAR IN PURO BOOTSTRAP
 function NavbarBootstrap() {

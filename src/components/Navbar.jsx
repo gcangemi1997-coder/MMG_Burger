@@ -121,5 +121,3 @@ export default function Navbar({ userRole, onLogout }) {
     </nav>
   );
 }
-
-export default Navbar;
