@@ -56,15 +56,41 @@ function Home() {
     <PageTransition>
       {/* 🌟 3. INIETTIAMO L'ANIMAZIONE DEL CARRELLO */}
       <style>{`
-        @keyframes cartBounce {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.08); } /* Si ingrandisce e va su */
-          100% { transform: scale(1); }    /* Torna normale */
-        }
-        .animate-cart-bounce {
-          animation: cartBounce 0.3s ease-in-out;
-        }
-      `}</style>
+  @keyframes cartBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  .animate-cart-bounce {
+    animation: cartBounce 0.3s ease-in-out;
+  }
+
+  /* 🌟 Layout responsive menu + carrello */
+  .menu-layout {
+    display: grid;
+    gap: 30px;
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+  .menu-layout.has-cart {
+    grid-template-columns: 3fr 1fr;
+  }
+
+  .cart-sidebar {
+    position: sticky;
+    top: 20px;
+  }
+
+  /* Sotto i 768px: una colonna sola, carrello sotto e non più sticky */
+  @media (max-width: 768px) {
+    .menu-layout.has-cart {
+      grid-template-columns: 1fr;
+    }
+    .cart-sidebar {
+      position: static;
+    }
+  }
+`}</style>
 
       <div style={{ padding: "20px 0" }}>
         <header style={{ textAlign: "center", marginBottom: "40px" }}>
@@ -75,13 +101,7 @@ function Home() {
         </header>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              isBuyer && cart && cart.length > 0 ? "3fr 1fr" : "1fr",
-            gap: "30px",
-            alignItems: "start",
-          }}
+          className={`menu-layout ${isBuyer && cart && cart.length > 0 ? "has-cart" : ""}`}
         >
           {/* COLONNA SINISTRA: LA GRIGLIA DEI PRODOTTI */}
           <div
@@ -198,16 +218,13 @@ function Home() {
           {/* 🌟 COLONNA DESTRA: IL MINI CARRELLO CON AGGIUNTA LA CLASSE ANIMATA DENTRO CLASSNAME */}
           {isBuyer && cart && cart.length > 0 && (
             <div
-              className={isBouncing ? "animate-cart-bounce" : ""}
+              className={`cart-sidebar ${isBouncing ? "animate-cart-bounce" : ""} `}
               style={{
                 border: "2px solid #ffc107",
                 borderRadius: "12px",
                 padding: "20px",
                 backgroundColor: "#fffdf6",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                position: "sticky",
-                top: "20px",
-                // Aggiungiamo una transition fluida anche per la normale interazione CSS
                 transition: "transform 0.1s ease-in-out",
               }}
             >
