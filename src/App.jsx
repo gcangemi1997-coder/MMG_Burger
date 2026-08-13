@@ -16,7 +16,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import AdminDashboard from "./components/AdminDashboard.jsx";
 import UserOrders from "./components/UserOrders.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import useScrollDirection from "./hooks/useScrollDirection.js";
+import useScrollDirection from "./hooks/UseScrollDirection.js";
 
 // NAVBAR IN PURO BOOTSTRAP
 function NavbarBootstrap() {
