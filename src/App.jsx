@@ -50,13 +50,13 @@ function NavbarBootstrap() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3 rounded-3 mb-4"
+      className="navbar navbar-expand-lg navbar-dark glass-navbar px-3 mb-4"
       style={{
         position: "sticky",
-        top: 0,
+        top: 12,
         zIndex: 1030,
         transform:
-          isVisible || isMenuOpen ? "translateY(0)" : "translateY(-100%)",
+          isVisible || isMenuOpen ? "translateY(0)" : "translateY(-120%)",
         transition: "transform 0.3s ease-in-out",
       }}
     >
@@ -66,7 +66,7 @@ function NavbarBootstrap() {
           to="/"
           onClick={closeMenu}
         >
-          MMG Burger 🍔
+          <span className="text-gradient">MMG Burger</span> 🍔
         </Link>
 
         <button
@@ -201,14 +201,7 @@ function App() {
   return (
     <AppProvider>
       <BrowserRouter>
-        <div
-          className="container-fluid py-4"
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            fontFamily: "sans-serif",
-          }}
-        >
+        <div className="app-shell">
           <ScrollToTop />
           {/* Richiamiamo la barra di navigazione Bootstrap */}
           <NavbarBootstrap />
