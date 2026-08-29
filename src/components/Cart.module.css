@@ -1,0 +1,135 @@
+.cartPage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.cartTitle {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cartItemInfo {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.cartItemName {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.cartItemPrice {
+  margin: 0;
+  color: #777;
+}
+
+.cartQuantityBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  text-align: center;
+}
+
+.cartQuantityButton {
+  width: 30px;
+  height: 30px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cartQuantityValue {
+  font-weight: bold;
+  font-size: 16px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.cartItemTotal {
+  font-weight: bold;
+  font-size: 18px;
+  width: 80px;
+  text-align: right;
+}
+
+.cartSummary {
+  margin-top: 30px;
+  text-align: right;
+  border-top: 2px solid #eee;
+  padding-top: 20px;
+}
+
+.cartSummaryTotal {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cartSummaryActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.cartSecondaryButton,
+.cartPrimaryButton,
+.cartLinkButton {
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cartSecondaryButton {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.cartPrimaryButton {
+  padding: 10px 25px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.cartPrimaryButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.cartEmptyState,
+.cartSuccessState {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cartSuccessTitle {
+  color: #4caf50;
+}
+
+.cartSuccessText {
+  font-size: 18px;
+  color: #555;
+}
+
+.cartLinkButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffc107;
+  color: #333;
+  text-decoration: none;
+}

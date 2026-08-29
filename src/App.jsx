@@ -18,6 +18,20 @@ import UserOrders from "./components/UserOrders.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import useScrollDirection from "./hooks/UseScrollDirection.js";
 
+function ProtectedRoute({ children, allowedRoles = [] }) {
+  const { user } = useContext(AppContext);
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+}
+
 // NAVBAR IN PURO BOOTSTRAP
 function NavbarBootstrap() {
   const location = useLocation();
@@ -205,10 +219,30 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/i-miei-ordini" element={<UserOrders />} />
-            {/* Fallback di sicurezza */}
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["staff"]}>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/i-miei-ordini"
+              element={
+                <ProtectedRoute allowedRoles={["user"]}>
+                  <UserOrders />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
