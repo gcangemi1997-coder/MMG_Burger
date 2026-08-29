@@ -11,11 +11,9 @@
 
 </div>
 
-A modern burger ordering platform built with **React**, **Express.js**, and **MongoDB**, featuring authentication, cart management, order tracking, kitchen workflow, and admin controls.
+MMG Burger is a full-stack burger ordering platform built with React, Express and MongoDB. Users can browse the menu, add products to the cart, place orders and check their personal order history, while staff and administrators manage the kitchen workflow and order monitoring.
 
 ## 📸 Screenshots
-
-Add screenshots of the app here:
 
 ![Homepage](public/MMG_ScreenShot.png)
 ![Menu and cart](public/MMG_ScreenShot2.png)
@@ -24,106 +22,107 @@ Add screenshots of the app here:
 
 ## ✨ Overview
 
-MMG Burger is a full stack web application designed to simulate a modern burger ordering experience.  
-Users can browse the menu, add products to the cart, place orders, and track their personal order history, while staff and admins can manage the kitchen and incoming orders.
+This project simulates a modern food-ordering application with a client-facing interface and an operational backend.
+
+The app includes:
+
+- user registration and login
+- JWT-based authentication
+- role-based access for customers, staff and admin users
+- cart management with product quantity controls
+- order creation and tracking
+- dashboard views for the operating team
 
 ---
 
 ## 🚀 Features
 
-### 👤 Authentication
+### Customer features
 
-- User registration and login
-- JWT-based authentication
-- Persistent session handling
-- Logout flow that clears local authentication data
-- Role-based access control
+- browse the burger menu
+- add/remove items from the cart
+- change item quantity before checkout
+- place an order
+- view personal order history
 
-### 🍔 Customer Experience
+### Staff features
 
-- Burger menu browsing
-- Shopping cart with quantity management
-- Order placement
-- Personal order history
+- staff dashboard for incoming orders
+- order status management during preparation
+- workflow support for kitchen operations
 
-### 👨‍🍳 Staff Area
+### Admin features
 
-- Kitchen dashboard for incoming orders
-- Order status updates during preparation
-- Real-time workflow for kitchen operations
+- admin order overview
+- protected areas for privileged users
+- centralized order management
 
-### 🛡️ Admin Area
+### Security and data layer
 
-- Admin dashboard for order management
-- Access control for privileged actions
-- Centralized view of incoming orders
-
-### 🗄️ Data Layer
-
-- MongoDB integration with Mongoose
-- In-memory fallback support for local development
+- MongoDB + Mongoose integration
+- password hashing with bcryptjs
+- JWT authentication for protected routes
+- server-side validation on order and auth endpoints
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer          | Technologies                    |
-| -------------- | ------------------------------- |
-| Frontend       | React, Vite, Bootstrap          |
-| Backend        | Express.js                      |
-| Database       | MongoDB, Mongoose               |
-| Authentication | JSON Web Tokens (JWT), bcryptjs |
-| Testing        | Automated API route tests       |
+| Layer          | Technologies                  |
+| -------------- | ----------------------------- |
+| Frontend       | React, Vite                   |
+| Styling        | Bootstrap, custom CSS modules |
+| Backend        | Express.js                    |
+| Database       | MongoDB, Mongoose             |
+| Authentication | JWT, bcryptjs                 |
+| Testing        | Node.js built-in test runner  |
 
 ---
 
-## 📦 Project Structure
+## 📁 Project Structure
 
 ```text
 MMG Burger/
 ├── api/
-│   ├── admin/
 │   ├── config/
+│   ├── controllers/
+│   ├── middleware/
 │   ├── models/
-│   ├── orders/
+│   ├── routes/
 │   ├── index.js
 │   ├── login.js
-│   ├── order.js
-│   ├── orders.js
-│   └── register.js
+│   ├── register.js
+│   └── .env.example
 ├── public/
+│   ├── MMG_ScreenShot.png
+│   ├── MMG_ScreenShot2.png
 │   └── site.webmanifest
 ├── src/
 │   ├── components/
 │   ├── context/
 │   ├── App.jsx
-│   └── main.jsx
+│   ├── main.jsx
+│   └── ...
 ├── tests/
 │   └── api-routes.test.js
+├── .env
+├── .env.example
+├── .gitignore
 ├── index.html
 ├── package.json
+├── package-lock.json
 ├── vite.config.js
-└── vercel.json
+├── vercel.json
+├── README.md
+└── Progetto Finale Full Stack di Giorgio Cangemi.pdf
 ```
 
-### Folder Guide
+### Main folders
 
-- `src/` → React frontend and UI components
-- `api/` → backend routes, authentication, models, and database logic
-- `public/` → static assets and web manifest
-- `tests/` → automated backend/API tests
-
----
-
-## ✅ Main Functionalities Implemented
-
-- Authentication flow with login and registration
-- Protected routes based on user role
-- Shopping cart with quantity management
-- Order submission and personal order tracking
-- Staff dashboard to update order status
-- Admin dashboard to manage incoming orders
-- Database integration with fallback for local development
+- `src/` → frontend React application and UI components
+- `api/` → backend routes, controllers, middleware, config and models
+- `public/` → static assets and screenshots
+- `tests/` → automated API verification tests
 
 ---
 
@@ -137,7 +136,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` file in the project root with the following variables:
+Create a `.env` file in the project root based on `.env.example`:
 
 ```env
 MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
@@ -145,15 +144,13 @@ JWT_SECRET=your_super_secret_key
 PORT=3001
 ```
 
-> The application expects a MongoDB Atlas or MongoDB-compatible connection string. If the database is unavailable, the app falls back to a local in-memory mode for basic testing.
-
-### 3. Run the backend API
+### 3. Start the API server
 
 ```bash
 npm run api
 ```
 
-### 4. Run the frontend development server
+### 4. Start the frontend development environment
 
 ```bash
 npm run dev
@@ -165,40 +162,44 @@ npm run dev
 npm test
 ```
 
+### 6. Build the production bundle
+
+```bash
+npm run build
+```
+
 ---
 
-## 🌐 Demo
+## ✅ Verification
 
-Live demo: https://mmg-burger.vercel.app/
+The current project has been validated with:
+
+- `npm test -- --test-reporter=spec`
+- `npm run build`
+
+Both commands have passed successfully in the project state currently in use.
 
 ---
 
-## 🧪 Project Goals
+## 🌐 Deployment
 
-This project was created to practice and demonstrate:
-
-- Full stack application structure
-- Authentication and authorization
-- Role-based user flows
-- CRUD logic for orders
-- Frontend and backend integration
-- Real-world portfolio project organization
+This project is configured for deployment with Vercel and includes a Vercel configuration file in the root.
 
 ---
 
 ## 👨‍💻 Author
 
-Built by **Giorgio Cangemi** as part of the [Start2Impact](https://www.start2impact.it/) Full Stack Developer course.
+Built by **Giorgio Cangemi** as part of the [Start2Impact](https://www.start2impact.it/) Full Stack Developer path.
 
 ---
 
 ## 📬 Contact
 
-- 💼 [LinkedIn — Giorgio Cangemi](https://www.linkedin.com/in/giorgio-cangemi-7b4b77172/)
-- 📧 [g.cangemi1997@gmail.com](mailto:g.cangemi1997@gmail.com)
+- LinkedIn: https://www.linkedin.com/in/giorgio-cangemi-7b4b77172/
+- Email: g.cangemi1997@gmail.com
 
 ---
 
 ## 📄 License
 
-This project was created for educational purposes.
+This project is intended for educational and portfolio purposes.
