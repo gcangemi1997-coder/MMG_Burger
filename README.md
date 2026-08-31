@@ -114,7 +114,6 @@ MMG Burger/
 ├── vite.config.js
 ├── vercel.json
 ├── README.md
-└── Progetto Finale Full Stack di Giorgio Cangemi.pdf
 ```
 
 ### Main folders
