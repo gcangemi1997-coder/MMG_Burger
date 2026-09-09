@@ -194,7 +194,7 @@ Built by **Giorgio Cangemi** as part of the [Start2Impact](https://www.start2imp
 
 ## 📬 Contact
 
-- LinkedIn: https://www.linkedin.com/in/giorgio-cangemi/
+- [LinkedIn](https://www.linkedin.com/in/giorgio-cangemi/)
 - Email: g.cangemi1997@gmail.com
 
 ---
