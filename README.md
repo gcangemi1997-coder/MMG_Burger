@@ -13,7 +13,9 @@
 
 MMG Burger is a full-stack burger ordering platform built with React, Express and MongoDB. Users can browse the menu, add products to the cart, place orders and check their personal order history, while staff and administrators manage the kitchen workflow and order monitoring.
 
-## 📸 Screenshots
+## 📸 Screenshots and Demo Live
+
+**👉 [Demo Live](https://mmg-burger.vercel.app/)**
 
 ![Homepage](public/MMG_ScreenShot.png)
 ![Menu and cart](public/MMG_ScreenShot2.png)
